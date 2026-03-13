@@ -39,7 +39,7 @@ export default function Home() {
   return (
     <div className="bg-[url('/img.png')] bg-cover bg-center h-screen flex items-center justify-center relative">
       {!showVideo && !showResult && (
-        <div className="bg-white rounded-2xl p-10 shadow-lg w-96 z-10 relative">
+        <div className="bg-white rounded-2xl p-10 shadow-lg w-96  relative">
           <form
             dir="rtl"
             className="flex flex-col gap-4"
@@ -78,20 +78,6 @@ export default function Home() {
         </div>
       )}
 
-      {/* {showVideo && (
-        <div className="fixed inset-0 bg-black z-50 flex items-center justify-center">
-          <video
-            src={`${import.meta.env.BASE_URL}spidr2.mp4`}
-            autoPlay
-            controls={false}
-            className="w-full h-full object-cover"
-            onEnded={() => {
-              setShowVideo(false);
-              setShowResult(true);
-            }}
-          />
-        </div>
-      )} */}
       {showVideo && (
         <div className="fixed inset-0 bg-black z-50 flex items-center justify-center">
           <video
