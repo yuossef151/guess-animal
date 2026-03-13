@@ -93,20 +93,20 @@ export default function Home() {
         </div>
       )} */}
       {showVideo && (
-  <div className="fixed inset-0 bg-black z-50 flex items-center justify-center">
-    <video
-      src={`https://www.w3schools.com/html/mov_bbb.mp4`}
-      autoPlay
-      controls
-      playsInline
-      className="max-w-full max-h-full"
-      onEnded={() => {
-        setShowVideo(false);
-        setShowResult(true);
-      }}
-    />
-  </div>
-)}
+        <div className="fixed inset-0 bg-black z-50 flex items-center justify-center">
+          <video
+            src={`${import.meta.env.BASE_URL}spidr2.mp4`}
+            autoPlay
+            controls
+            playsInline
+            className="max-w-full max-h-full"
+            onEnded={() => {
+              setShowVideo(false);
+              setShowResult(true);
+            }}
+          />
+        </div>
+      )}
 
       {showResult && (
         <div className="bg-white/90 backdrop-blur p-10 rounded-2xl shadow-lg w-96 z-10 text-center">
