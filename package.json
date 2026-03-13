@@ -1,9 +1,9 @@
 {
-  "homepage": "https://yuossef151.github.io/guess-animal",
   "name": "last-task",
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://yuossef151.github.io/guess-animal",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

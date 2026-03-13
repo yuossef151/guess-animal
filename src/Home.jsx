@@ -34,7 +34,7 @@ export default function Home() {
       ]);
     }
   };
-          <p>الحيوان الذي خمنته هو: عنكبوت</p>
+  <p>الحيوان الذي خمنته هو: عنكبوت</p>;
 
   return (
     <div className="bg-[url('/img.png')] bg-cover bg-center h-screen flex items-center justify-center relative">
@@ -78,27 +78,42 @@ export default function Home() {
         </div>
       )}
 
-      
-      {showVideo && (
+      {/* {showVideo && (
         <div className="fixed inset-0 bg-black z-50 flex items-center justify-center">
           <video
-            src="/spidr2.mkv" 
+            src={`${import.meta.env.BASE_URL}spidr2.mp4`}
             autoPlay
             controls={false}
             className="w-full h-full object-cover"
             onEnded={() => {
               setShowVideo(false);
-              setShowResult(true); 
+              setShowResult(true);
             }}
           />
         </div>
-      )}
+      )} */}
+      {showVideo && (
+  <div className="fixed inset-0 bg-black z-50 flex items-center justify-center">
+    <video
+      src={`https://www.w3schools.com/html/mov_bbb.mp4`}
+      autoPlay
+      controls
+      playsInline
+      className="max-w-full max-h-full"
+      onEnded={() => {
+        setShowVideo(false);
+        setShowResult(true);
+      }}
+    />
+  </div>
+)}
 
       {showResult && (
         <div className="bg-white/90 backdrop-blur p-10 rounded-2xl shadow-lg w-96 z-10 text-center">
-          <h1 className="text-2xl font-bold mb-4">عليا الطلاق بالتلاته ان انت اتخضديت </h1>
-          <img src="/moge.png" alt="" />
-
+          <h1 className="text-2xl font-bold mb-4">
+            عليا الطلاق بالتلاته ان انت اتخضديت{" "}
+          </h1>
+          <img src={`${import.meta.env.BASE_URL}moge.png`} alt="" />
         </div>
       )}
     </div>
