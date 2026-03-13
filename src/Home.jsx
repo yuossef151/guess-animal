@@ -79,13 +79,16 @@ export default function Home() {
       )}
 
       {showVideo && (
-        <div className="fixed inset-0 bg-black z-50 flex items-center justify-center">
+        <div className="fixed  bg-black  flex items-center justify-center">
           <video
             src={`${import.meta.env.BASE_URL}spidr2.mp4`}
-            autoPlay
             controls
             playsInline
-            className="max-w-full max-h-full"
+            preload="auto"
+            className="w-full h-full object-contain bg-white"
+            onLoadedData={(e) => {
+              e.target.play();
+            }}
             onEnded={() => {
               setShowVideo(false);
               setShowResult(true);
