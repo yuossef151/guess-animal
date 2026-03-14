@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function Home() {
   const correctAnswer = "عنكبوت";
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const hints = [
     "لديه 8 أرجل",
     "يصنع شبكة لصيد الحشرات",
@@ -11,8 +15,8 @@ export default function Home() {
   const [inputValue, setInputValue] = useState("");
   const [attempts, setAttempts] = useState(0);
   const [messages, setMessages] = useState([]);
-  const [showVideo, setShowVideo] = useState(false);
-  const [showResult, setShowResult] = useState(false);
+
+  const success = location.state?.success;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,13 +25,7 @@ export default function Home() {
       setAttempts(attempts + 1);
 
       if (inputValue.trim() === correctAnswer) {
-        setShowVideo(true);
-
-        setTimeout(() => {
-          setShowVideo(false);
-          setShowResult(true);
-        }, 2000); 
-
+        navigate("/video"); // يروح لصفحة الفيديو
         return;
       } else {
         setMessages([...messages, hints[attempts]]);
@@ -41,10 +39,14 @@ export default function Home() {
       ]);
     }
   };
+  useEffect(() => {
+    window.history.replaceState({}, document.title);
+  }, []);
 
   return (
-    <div className="bg-[url('/img.png')] bg-cover bg-center h-screen flex items-center justify-center relative">
-      {!showVideo && !showResult && (
+    <div className="bg-[url('/img.png')] bg-cover bg-center h-screen flex items-center justify-center">
+      {/* الفورم تظهر فقط لو مفيش نجاح */}
+      {!success && (
         <div className="bg-white rounded-2xl p-10 shadow-lg w-96">
           <form
             dir="rtl"
@@ -74,21 +76,11 @@ export default function Home() {
         </div>
       )}
 
-      {showVideo && (
-        <div className="fixed inset-0 bg-black flex items-center justify-center z-50">
-          <video
-            src="https://yuossef151.github.io/guess-animal/spidr2.mp4"
-            autoPlay
-            controls
-            className="w-full h-full object-cover"
-          />
-        </div>
-      )}
-
-      {showResult && (
-        <div dir="rtl" className="bg-white/90 backdrop-blur p-10 rounded-2xl shadow-lg w-96 text-center">
+      {/* رسالة النجاح */}
+      {success && (
+        <div className="bg-white/90 backdrop-blur p-10 rounded-2xl shadow-lg w-96 text-center">
           <h1 className="text-2xl font-bold">
-             عليا الطلاق بالتلاته ان انت اتخضيت 😂😂😂
+            عليا الطلاق بالتلاته ان انت اتخضيت 😂😂😂
           </h1>
         </div>
       )}
